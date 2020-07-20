@@ -1,0 +1,19 @@
+{
+  "name": "hackernewsclone",
+  "version": "1.0.0",
+  "description": "Simple Hackernews clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flagoon/hackerNewsClone.git"
+  },
+  "author": "Pawel Kochanek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flagoon/hackerNewsClone/issues"
+  },
+  "homepage": "https://github.com/flagoon/hackerNewsClone#readme"
+}
