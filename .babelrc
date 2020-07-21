@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": ["last 2 versions", "not dead", "not < 2%"],
+        "useBuiltIns": "usage",
+        "corejs": "3.6.5"
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": ["react-hot-loader/babel", "@babel/proposal-class-properties", "@babel/proposal-object-rest-spread"]
+}
