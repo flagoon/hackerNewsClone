@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { FaMoon, FaSun } from 'react-icons/fa'
 
 export const NavContainer = styled.nav`
   display: flex;
@@ -15,19 +14,5 @@ export const NavItem = styled(NavLink)`
 
   &:hover {
     color: ${(props) => props.theme.colors.primary};
-  }
-`
-
-export const Moon = styled(FaMoon)`
-  cursor: pointer;
-  &:hover {
-    color: ${(props) => props.theme.colors.secondary};
-  }
-`
-
-export const Sun = styled(FaSun)`
-  cursor: pointer;
-  &:hover {
-    color: ${(props) => props.theme.colors.secondary};
   }
 `

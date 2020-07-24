@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavContainer, NavItem, Moon, Sun } from './NavBar.sc'
+import { FaSun, FaMoon } from 'react-icons/fa'
+import { NavContainer, NavItem } from './NavBar.sc'
 import ThemeContext from '../../context/ThemeContext'
 
 const NavBar: React.FC = () => {
@@ -11,9 +12,9 @@ const NavBar: React.FC = () => {
         <NavItem to="/recent">Recent</NavItem>
       </div>
       {theme === 'light' ? (
-        <Moon size={24} onClick={() => changeTheme('dark')} />
+        <FaMoon size={24} onClick={() => changeTheme('dark')} />
       ) : (
-        <Sun size={24} onClick={() => changeTheme('light')} />
+        <FaSun size={24} onClick={() => changeTheme('light')} />
       )}
     </NavContainer>
   )
