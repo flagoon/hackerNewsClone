@@ -68,12 +68,5 @@
   },
   "files": ["./src/styles/styled.d.ts"],
   "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest"
-  ]
+  "exclude": ["build", "scripts", "acceptance-tests", "webpack", "jest"]
 }
