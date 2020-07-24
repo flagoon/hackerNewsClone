@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const App: React.FC = () => <Container>Hello</Container>
+import Messages from './Messages/Messages'
+
+const App: React.FC = () => (
+  <Container>
+    <Messages />
+  </Container>
+)
 
 export default App
 

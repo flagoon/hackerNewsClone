@@ -14,11 +14,11 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    line-height: 2;
     font-family: Montserrat, sans-serif;
     background: ${(props) => props.theme.colors.background}
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
 `
