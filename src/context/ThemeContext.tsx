@@ -2,12 +2,12 @@ import React from 'react'
 
 type Theme = {
   theme: string
-  changeTheme: (newTheme: string) => void
+  toggleTheme: () => void
 }
 
 const ThemeContext = React.createContext<Theme>({
   theme: 'light',
-  changeTheme: () => {
+  toggleTheme: () => {
     // do nothing
   },
 })

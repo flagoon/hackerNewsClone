@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 
+import { useDarkTheme } from '../hooks'
 import ThemeContext from '../context/ThemeContext'
 import Messages from './Messages/Messages'
 import dark from '../styles/themes/dark'
@@ -37,20 +38,17 @@ const MyIconProviderWithStyles = styled(MyIconProvider)`
 `
 
 const App: React.FC = () => {
-  const [theme, setTheme] = React.useState('light')
-
-  const changeTheme = (newTheme: string): void => {
-    setTheme(newTheme)
-  }
+  const [theme, toggleTheme] = useDarkTheme()
+  const themeMode = theme === 'light' ? light : dark
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? dark : light}>
+    <ThemeProvider theme={themeMode}>
       {/* Unfortunatelly typescript is complaining that className is required, but it's not provided. This is workaround */}
       <MyIconProviderWithStyles className="not-important">
         <ThemeContext.Provider
           value={{
             theme,
-            changeTheme,
+            toggleTheme,
           }}
         >
           <Router>
