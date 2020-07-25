@@ -1,14 +1,14 @@
 import React from 'react'
-import { FaSun, FaMoon } from 'react-icons/fa'
 import ThemeContext from '../../context/ThemeContext'
+import { Toggler } from './ThemeToggler.sc'
 
 const ThemeToggler: React.FC = () => {
   const { theme, toggleTheme } = React.useContext(ThemeContext)
 
   if (theme === 'light') {
-    return <FaMoon size={24} onClick={() => toggleTheme()} />
+    return <Toggler onClick={toggleTheme}>Dark</Toggler>
   }
-  return <FaSun size={24} onClick={() => toggleTheme()} />
+  return <Toggler onClick={toggleTheme}>Light</Toggler>
 }
 
 export default ThemeToggler
