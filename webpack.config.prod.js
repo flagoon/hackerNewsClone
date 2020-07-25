@@ -1,18 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const webpackBase = require('./webpack.config.base');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { merge } = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const webpackBase = require('./webpack.config.base')
 
 module.exports = merge(webpackBase, {
   mode: 'production',
-  output: {
-    path: path.resolve(__dirname, 'lib'),
-    filename: 'app.bundles.js',
-  },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
@@ -46,4 +41,4 @@ module.exports = merge(webpackBase, {
   ],
 
   externals: { react: 'React', 'react-dom': 'ReactDOM' },
-});
+})

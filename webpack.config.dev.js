@@ -1,18 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const webpackBase = require('./webpack.config.base');
+const { merge } = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const webpackBase = require('./webpack.config.base')
 
 module.exports = merge(webpackBase, {
   mode: 'development',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundles.js',
-  },
   plugins: [
     // this plugin is checking and reporting problems with typescript types. Without it,
     // webpack will not report errors, if compilation is correct. If we don't use {transpileOnly: true}
@@ -40,4 +35,4 @@ module.exports = merge(webpackBase, {
     historyApiFallback: true,
     stats: 'errors-only',
   },
-});
+})

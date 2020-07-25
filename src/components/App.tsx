@@ -1,14 +1,18 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { useDarkTheme } from '../hooks'
 import ThemeContext from '../context/ThemeContext'
-import Messages from './Messages/Messages'
 import dark from '../styles/themes/dark'
 import light from '../styles/themes/light'
 import GlobalStyles from '../styles/global'
 import NavBar from './NavBar/NavBar'
+import Loading from './Loading/Loading'
+import Post from './Post/Post'
+import { Author } from './Author/Author'
+
+const Messages = React.lazy(() => import('./Messages/Messages'))
 
 const App: React.FC = () => {
   const [theme, toggleTheme] = useDarkTheme()
@@ -16,21 +20,34 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={themeMode}>
-      {/* Unfortunatelly typescript is complaining that className is required, but it's not provided. This is workaround */}
-
       <ThemeContext.Provider
         value={{
           theme,
           toggleTheme,
         }}
       >
-        <Router>
-          <Container>
+        <Container>
+          <React.Suspense fallback={<Loading />}>
             <GlobalStyles />
-            <NavBar />
-            <Messages />
-          </Container>
-        </Router>
+            <Router>
+              <NavBar />
+              <Switch>
+                <Route exact path="/">
+                  <Messages type="top" />
+                </Route>
+                <Route path="/recent">
+                  <Messages type="new" />
+                </Route>
+                <Route path="/post">
+                  <Post />
+                </Route>
+                <Route path="/author">
+                  <Author />
+                </Route>
+              </Switch>
+            </Router>
+          </React.Suspense>
+        </Container>
       </ThemeContext.Provider>
     </ThemeProvider>
   )

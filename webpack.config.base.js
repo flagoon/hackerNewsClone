@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   // Change to your "entry-point".
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundles.js',
+    filename: 'app.bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -46,4 +47,4 @@ module.exports = {
       },
     ],
   },
-};
+}
