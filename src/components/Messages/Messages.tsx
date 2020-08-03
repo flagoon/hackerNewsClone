@@ -1,6 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { Message, MessageHeader, MessageInfo } from './Messages.sc'
+import Message from './Message/Message'
 import { getStories } from '../../api'
 import {
   fetchPosts,
@@ -51,22 +50,7 @@ const Messages: React.FC<{ type: 'top' | 'new' }> = ({ type }) => {
   return (
     <>
       {state.posts.map((message) => {
-        return (
-          <Message key={message.id}>
-            <MessageHeader>
-              <a href={message.url}>{message.title}</a>
-            </MessageHeader>
-
-            <MessageInfo>
-              by <NavLink to={`/author?id=${message.by}`}>{message.by}</NavLink>{' '}
-              on {message.time} with{' '}
-              <NavLink to={`/post?id=${message.id}`}>
-                {message.descendants}
-              </NavLink>{' '}
-              comments
-            </MessageInfo>
-          </Message>
-        )
+        return <Message key={message.id} message={message} />
       })}
     </>
   )
