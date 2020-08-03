@@ -9,3 +9,10 @@ declare interface Item {
   type: string
   url: string
 }
+
+declare interface Author {
+  created: number
+  id: string
+  karma: number
+  submited: string[]
+}
