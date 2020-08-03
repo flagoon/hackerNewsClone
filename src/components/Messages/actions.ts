@@ -9,9 +9,9 @@ export const fetchPosts = (): PostsActionTypes => ({
   type: FETCH_POSTS,
 })
 
-export const fetchPostsSuccess = (posts: Item[]): PostsActionTypes => ({
+export const fetchPostsSuccess = (ids: string[]): PostsActionTypes => ({
   type: FETCH_POSTS_SUCCESS,
-  posts,
+  ids,
 })
 
 export const fetchPostsFailure = (error: string): PostsActionTypes => ({

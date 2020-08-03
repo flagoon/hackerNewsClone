@@ -1,14 +1,11 @@
 import React from 'react'
-import Message from './Message/Message'
 import { getStories } from '../../api'
-import {
-  fetchPosts,
-  fetchPostsFailure,
-  fetchPostsSuccess,
-  postsReducer,
-  postsReducerInitialState,
+import { fetchPosts, fetchPostsFailure, fetchPostsSuccess } from './actions'
+import postsReducer, {
+  initialState as postsReducerInitialState,
 } from './reducer'
 import Loading from '../Loading/Loading'
+import Posts from '../Posts/Posts'
 
 const Messages: React.FC<{ type: 'top' | 'new' }> = ({ type }) => {
   const [state, dispatch] = React.useReducer(
@@ -19,18 +16,8 @@ const Messages: React.FC<{ type: 'top' | 'new' }> = ({ type }) => {
   React.useEffect(() => {
     dispatch(fetchPosts())
     getStories(type)
-      .then(async (ids) => {
-        const fetchArray = ids.map(async (id) =>
-          fetch(
-            `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`,
-          ),
-        )
-        const result = await Promise.all(
-          fetchArray,
-        ).then(async (fetchedPosts) =>
-          Promise.all<Item>(fetchedPosts.map((f) => f.json())),
-        )
-        dispatch(fetchPostsSuccess(result))
+      .then((ids) => {
+        dispatch(fetchPostsSuccess(ids))
       })
       .catch((exception) => dispatch(fetchPostsFailure(exception.message)))
   }, [type])
@@ -43,17 +30,7 @@ const Messages: React.FC<{ type: 'top' | 'new' }> = ({ type }) => {
     return <div>Error: {state.error}</div>
   }
 
-  if (state.posts.length === 0) {
-    return <div>There are no posts</div>
-  }
-
-  return (
-    <>
-      {state.posts.map((message) => {
-        return <Message key={message.id} message={message} />
-      })}
-    </>
-  )
+  return <Posts ids={state.ids} />
 }
 
 export default Messages

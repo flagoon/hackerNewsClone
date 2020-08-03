@@ -9,10 +9,10 @@ import light from '../styles/themes/light'
 import GlobalStyles from '../styles/global'
 import NavBar from './NavBar/NavBar'
 import Loading from './Loading/Loading'
-import Post from './Post/Post'
-import { Author } from './Author/Author'
+import Comments from './Comments/Comments'
 
 const Messages = React.lazy(() => import('./Messages/Messages'))
+const Author = React.lazy(() => import('./Author/Author'))
 
 const App: React.FC = () => {
   const [theme, toggleTheme] = useDarkTheme()
@@ -39,7 +39,7 @@ const App: React.FC = () => {
                   <Messages type="new" />
                 </Route>
                 <Route path="/post">
-                  <Post />
+                  <Comments />
                 </Route>
                 <Route path="/author">
                   <Author />

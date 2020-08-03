@@ -14,5 +14,5 @@ declare interface Author {
   created: number
   id: string
   karma: number
-  submited: string[]
+  submitted: string[]
 }

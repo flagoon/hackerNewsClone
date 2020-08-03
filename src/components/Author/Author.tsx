@@ -3,15 +3,11 @@ import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 
 import { getAuthor } from '../../api'
-import {
-  authorReducer,
-  authorInitialState,
-  fetchAuthor,
-  fetchAuthorFailure,
-  fetchAuthorSuccess,
-} from './reducer'
+import authorReducer, { initialState as authorInitialState } from './reducer'
+import { fetchAuthor, fetchAuthorFailure, fetchAuthorSuccess } from './actions'
+import Posts from '../Posts/Posts'
 
-export const Author: React.FC = () => {
+const Author: React.FC = () => {
   const { search } = useLocation()
   const { id } = queryString.parse(search)
 
@@ -20,7 +16,9 @@ export const Author: React.FC = () => {
   React.useEffect(() => {
     dispatch(fetchAuthor())
     getAuthor(id as string)
-      .then((author) => dispatch(fetchAuthorSuccess(author)))
+      .then(async (author) => {
+        dispatch(fetchAuthorSuccess(author))
+      })
       .catch((exception: Error) =>
         dispatch(fetchAuthorFailure(exception.message)),
       )
@@ -36,10 +34,13 @@ export const Author: React.FC = () => {
 
   return (
     <>
-      <h3>{state.author.id}</h3>
-      <div>{state.author.created}</div>
-      <div>{state.author.karma}</div>
-      <div>{state.author.submited}</div>
+      <h1>{state.author.id}</h1>
+      joined <span>{state.author.created}</span> has{' '}
+      <span>{state.author.karma}</span>
+      <h2>Posts</h2>
+      <Posts ids={state.author.submitted} />
     </>
   )
 }
+
+export default Author

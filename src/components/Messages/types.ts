@@ -8,7 +8,7 @@ interface FetchPostsAction {
 
 interface FetchPostsSuccessAction {
   type: typeof FETCH_POSTS_SUCCESS
-  posts: Item[]
+  ids: string[]
 }
 
 interface FetchPostsFailureAction {
