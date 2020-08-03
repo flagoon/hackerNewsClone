@@ -7,13 +7,13 @@ import {
 
 export interface PostReducerState {
   isLoading: boolean
-  posts: Item[]
+  ids: string[]
   error?: string
 }
 
 export const initialState = {
   isLoading: false,
-  posts: [],
+  ids: [],
 }
 
 const postReducer = (
@@ -22,9 +22,9 @@ const postReducer = (
 ): PostReducerState => {
   switch (action.type) {
     case FETCH_POSTS:
-      return { ...state, isLoading: true, error: '', posts: [] }
+      return { ...state, isLoading: true, error: '', ids: [] }
     case FETCH_POSTS_SUCCESS:
-      return { ...state, isLoading: false, posts: action.posts }
+      return { ...state, isLoading: false, ids: action.ids }
     case FETCH_POSTS_FAILURE:
       return { ...state, isLoading: false, error: action.error }
     default:

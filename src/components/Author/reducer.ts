@@ -17,7 +17,7 @@ export const initialState: AuthorReducerState = {
     created: 0,
     karma: 0,
     id: '',
-    submited: [],
+    submitted: [],
   },
 }
 
