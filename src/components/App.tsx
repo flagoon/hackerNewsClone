@@ -44,6 +44,9 @@ const App: React.FC = () => {
                 <Route path="/author">
                   <Author />
                 </Route>
+                <Route path="*">
+                  <div>Error</div>
+                </Route>
               </Switch>
             </Router>
           </React.Suspense>

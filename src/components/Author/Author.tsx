@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
@@ -35,10 +36,13 @@ const Author: React.FC = () => {
   return (
     <>
       <h1>{state.author.id}</h1>
-      joined <span>{state.author.created}</span> has{' '}
-      <span>{state.author.karma}</span>
+      joined{' '}
+      <span>
+        {new Date(state.author.created * 1000).toLocaleString()}
+      </span> has <span>{state.author.karma}</span> karma
+      <div dangerouslySetInnerHTML={{ __html: state.author.about as string }} />
       <h2>Posts</h2>
-      <Posts ids={state.author.submitted} />
+      <Posts ids={state.author.submitted} type="story" />
     </>
   )
 }

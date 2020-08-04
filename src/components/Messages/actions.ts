@@ -9,7 +9,7 @@ export const fetchPosts = (): PostsActionTypes => ({
   type: FETCH_POSTS,
 })
 
-export const fetchPostsSuccess = (ids: string[]): PostsActionTypes => ({
+export const fetchPostsSuccess = (ids: number[]): PostsActionTypes => ({
   type: FETCH_POSTS_SUCCESS,
   ids,
 })

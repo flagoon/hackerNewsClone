@@ -7,7 +7,7 @@ import {
 
 export interface PostReducerState {
   isLoading: boolean
-  ids: string[]
+  ids: number[]
   error?: string
 }
 
