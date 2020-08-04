@@ -30,7 +30,7 @@ const Messages: React.FC<{ type: 'top' | 'new' }> = ({ type }) => {
     return <div>Error: {state.error}</div>
   }
 
-  return <Posts ids={state.ids} />
+  return <Posts ids={state.ids} type="story" />
 }
 
 export default Messages

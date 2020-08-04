@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { MessageContainer, MessageHeader, MessageInfo } from './Message.sc'
 
@@ -11,9 +11,17 @@ const Message: React.FC<{ message: Item }> = ({ message }) => {
       </MessageHeader>
 
       <MessageInfo>
-        by <NavLink to={`/author?id=${message.by}`}>{message.by}</NavLink> on{' '}
-        {message.time} with{' '}
-        <NavLink to={`/post?id=${message.id}`}>{message.descendants}</NavLink>{' '}
+        by <Link to={`/author?id=${message.by}`}>{message.by}</Link> on{' '}
+        {new Date(message.time * 1000).toLocaleString()} with{' '}
+        <Link
+          to={{
+            pathname: '/post',
+            state: { message },
+            search: `id=${message.id}`,
+          }}
+        >
+          {message.descendants}
+        </Link>{' '}
         comments
       </MessageInfo>
     </MessageContainer>

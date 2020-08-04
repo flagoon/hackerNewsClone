@@ -8,11 +8,14 @@ declare interface Item {
   title: string
   type: string
   url: string
+  text?: string
+  deleted?: boolean
 }
 
 declare interface Author {
   created: number
   id: string
   karma: number
-  submitted: string[]
+  submitted: number[]
+  about?: string
 }
