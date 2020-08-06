@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
 
   html {
     box-sizing: border-box;
@@ -14,7 +13,7 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Roboto Slab', serif;
     background: ${(props) => props.theme.colors.background}
   }
   a {
