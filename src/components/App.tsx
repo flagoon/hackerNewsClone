@@ -27,7 +27,7 @@ const App: React.FC = () => {
         }}
       >
         <Container>
-          <React.Suspense fallback={<Loading />}>
+          <React.Suspense fallback={<Loading initialText="Catching module" />}>
             <GlobalStyles />
             <Router>
               <NavBar />

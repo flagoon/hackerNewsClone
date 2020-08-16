@@ -12,7 +12,7 @@ export const createUrl = (type: 'top' | 'new'): string =>
 export const getStories = (type: 'top' | 'new'): Promise<number[]> => {
   return fetch(createUrl(type))
     .then((response) => response.json())
-    .then((res) => res.slice(0, 50))
+    .then((res) => res)
     .catch((exception) => console.warn(exception))
 }
 
@@ -30,8 +30,7 @@ export const getItem = (id: number): Promise<Response> =>
   fetch(`https://hacker-news.firebaseio.com/v0/item/${id}${JSON}`)
 
 export const getPosts = (ids: number[]): Promise<Item[]> => {
-  const restrictedIds = ids.slice(0, 50)
-  const postsFetch = restrictedIds.map(getItem)
+  const postsFetch = ids.map(getItem)
   return Promise.all(postsFetch).then((posts) =>
     Promise.all<Item>(posts.map((p) => p.json())),
   )

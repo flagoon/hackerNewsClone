@@ -11,7 +11,7 @@ const Comments: React.FC = () => {
   const { id } = queryString.parse(search)
 
   React.useEffect(() => {
-    // if state is comming from react router, then set message for this ID. No need to fetch it again.
+    // if state is coming from react router, then set message for this ID. No need to fetch it again.
     if (state) {
       setMessage(state.message)
     } else {

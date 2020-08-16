@@ -8,12 +8,14 @@ import {
 export interface PostReducerState {
   isLoading: boolean
   ids: number[]
+  start: number
   error?: string
 }
 
 export const initialState = {
   isLoading: false,
   ids: [],
+  start: 0,
 }
 
 const postReducer = (
