@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Loading: React.FC = () => {
-  const [text, setText] = React.useState<string>('Loading')
+const Loading: React.FC<{ initialText: string }> = ({ initialText }) => {
+  const [text, setText] = React.useState<string>(initialText)
 
   React.useEffect(() => {
     const interval = window.setInterval(() => {
-      if (text !== 'Loading...') {
+      if (text !== `${initialText}...`) {
         setText((value) => `${value}.`)
       } else {
-        setText('Loading')
+        setText(initialText)
       }
     }, 300)
     return () => window.clearInterval(interval)
-  }, [text])
+  }, [text, initialText])
 
   return <LoadingContainer>{text}</LoadingContainer>
 }
