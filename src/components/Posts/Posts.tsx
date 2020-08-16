@@ -8,28 +8,24 @@ import Comment from '../Comment/Comment'
 import postsReducer from './reducer'
 import { fetchPosts, fetchPostsSuccess, fetchPostsFailure } from './actions'
 
-const Posts: React.FC<{ ids: number[]; type: 'story' | 'comment' }> = ({
-  ids,
-  type,
-}) => {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-
+const Posts: React.FC<{
+  ids: number[]
+  type: 'story' | 'comment'
+  fetchMore?: () => void
+}> = ({ ids, type, fetchMore }) => {
   const [state, dispatch] = React.useReducer(postsReducer, {
     isLoading: false,
     posts: [],
   })
 
   const fetchMoreStories = () => {
-    const postsDivHeight = containerRef.current?.clientHeight
-    // size of whole window, from top scroll position to bottom scroll position.
     const windowWholeArea = document.documentElement.scrollHeight
     const windowVisibleArea = window.innerHeight
     const windowTopScrollPosition = window.scrollY
-    if (windowTopScrollPosition + windowVisibleArea > windowWholeArea - 500) {
-      console.warn('scrollHeight: ', postsDivHeight)
-      console.warn('window: ', windowWholeArea)
-      console.error('windowVisibleArea: ', windowVisibleArea)
-      console.error('windowTopScrollPosition: ', windowTopScrollPosition)
+    if (windowTopScrollPosition + windowVisibleArea > windowWholeArea - 200) {
+      if (fetchMore) {
+        fetchMore()
+      }
     }
   }
 
@@ -37,8 +33,11 @@ const Posts: React.FC<{ ids: number[]; type: 'story' | 'comment' }> = ({
 
   React.useEffect(() => {
     window.addEventListener('scroll', fetchWithScroll)
-    return () => window.removeEventListener('scroll', fetchWithScroll)
-  }, [fetchWithScroll])
+    return () => {
+      return window.removeEventListener('scroll', fetchWithScroll)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   React.useEffect(() => {
     if (ids.length > 0) {
@@ -52,23 +51,20 @@ const Posts: React.FC<{ ids: number[]; type: 'story' | 'comment' }> = ({
     }
   }, [ids, type])
 
-  if (state.isLoading) {
-    return <Loading />
-  }
-
   if (state.error) {
     return <div>{state.error}</div>
   }
 
   return (
-    <div ref={containerRef}>
+    <div>
       {state.posts.map((post) =>
         type === 'story' ? (
           <Message key={post.id} message={post} />
         ) : (
-          <Comment comment={post} />
+          <Comment key={post.id} comment={post} />
         ),
       )}
+      {state.isLoading && <Loading initialText="Loading posts" />}
     </div>
   )
 }

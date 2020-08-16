@@ -17,9 +17,13 @@ const postsReducer = (
 ): PostsState => {
   switch (action.type) {
     case FETCH_POSTS:
-      return { ...state, isLoading: true, error: '', posts: [] }
+      return { ...state, isLoading: true, error: '', posts: [...state.posts] }
     case FETCH_POSTS_SUCCESS:
-      return { ...state, isLoading: false, posts: action.posts }
+      return {
+        ...state,
+        isLoading: false,
+        posts: [...state.posts, ...action.posts],
+      }
     case FETCH_POSTS_FAILURE:
       return { ...state, isLoading: false, posts: [], error: action.error }
 
